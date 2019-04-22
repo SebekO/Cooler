@@ -19,7 +19,9 @@ void homee()
     myScreen.text("HALL I:", 0, 60);
     myScreen.text(printout3, 85, 60);
     myScreen.text("A", 138, 60);
-    myScreen.text("FLOW:", 0, 80);
+    myScreen.text("TEMP P:", 0, 80);
+    myScreen.text(s, 138, 80);
+    myScreen.text("C", 149, 80);
     myScreen.text("ERRROR:", 0, 100);
     String elapsedVar = String(err);
     elapsedVar.toCharArray(printout,2);
@@ -77,5 +79,22 @@ void homee()
   digit3_tmp = map(digit3_tmp, 0, 1023 , 0, vmax);
   if(i == 1000)
     i = 0;
+
+
+//odczyt z termopary P
+  digit4 = analogRead(analogPin4);
+  digit4 = map(digit4, 0, 1023 , 0, vmax);
+  if(digit4_tmp != digit4 and point == 0)
+  {
+    myScreen.stroke(255, 255, 255);
+    myScreen.text(printout4, 85, 20);
+    String elapsedVar1 = String(digit4);
+    elapsedVar1.toCharArray(printout4,5);
+    myScreen.stroke(0, 0 ,0);
+    myScreen.text(printout4, 85, 20);
+    t_digit4[i] = digit4; //tablica na dane do wykresu  
+  }
+  digit4_tmp = analogRead(analogPin4);
+  digit4_tmp = map(digit4_tmp, 0, 1023 , 0, vmax);
   i++;
 }

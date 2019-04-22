@@ -22,6 +22,7 @@ const int CS_PIN = 3; //pin SPI pierwszego potencjometru cyfrowego
 int analogPin0 = A0; //czujnik temp B
 int analogPin2 = A2; //czujnik temp R
 int analogPin5 = A5; //czujnik halla
+int analogPin4 = A4; ///czujnik temp dP
 
 int red = 255, gre = 0, blu = 255; //kolor czcionki wybranego elementu
 int goPin = 7; //przycisk akceptacji
@@ -36,6 +37,8 @@ float digit2_tmp = 0; //pomocniczna zmienna
 float digit2 = 0; //termopara radiator
 float digit3_tmp = 0; //pomocniczna zmienna
 float digit3 = 0; //czujnik halla
+float digit4_tmp = 0; //pomocniczna zmienna
+float digit4 = 0; //termopara duzy peltier
 float var_set = 0; //zmienna dla ustawien
 
 int err = 0; //stan urządzenia
@@ -44,6 +47,8 @@ char printout[2]; //tablica do przechowywania stanu urzadzenia
 char printout1[5]; //tablica do przechowywania odczytu
 char printout2[5]; //tablica do przechowywania odczytu
 char printout3[5]; //tablica do przechowywania odczytu
+char printout4[5]; //tablica do przechowywania odczytu
+int w_temp[3]; //tablica do przechowywania zadanych wartosci temp
 
 char h[] = "  "; //znak specjalny dla strzalki w lewo
 char d[] = "  "; //znak specjalny dla strzalki w dol
@@ -52,15 +57,17 @@ char s[] = "  "; //znak specjalny dla stopnie
 int point = 0; //aktualne menu programu
 int but = 0; //aktualny stan przycisku wyboru
 int but1 = 0; //aktualny stan przycisku akceptacji/powrotu
+int mstick; //dla licznika
 
-float t_digit1[N]; //tablica na dane do wykresu
-float t_digit2[N]; //tablica na dane do wykresu
-float t_digit3[N]; //tablica na dane do wykresu
+float t_digit1[N]; //tablica na dane do wykresu wartowsci digital
+float t_digit2[N]; //tablica na dane do wykresu wartowsci digita2
+float t_digit3[N]; //tablica na dane do wykresu wartowsci digita3
+float t_digit4[N]; //tablica na dane do wykresu wartowsci digita4
 
 //potentiometer select byte
-const int POT0_SEL = 0x11;
-const int POT1_SEL = 0x12;
-const int BOTH_POT_SEL = 0x13;
+const int POT0_SEL = 0x11; //adres duzego peltiera
+const int POT1_SEL = 0x12; //adres malego peltiera
+const int BOTH_POT_SEL = 0x13; //adres obu peltierow
 
 //shutdown the device to put it into power-saving mode.
 //In this mode, terminal A is open-circuited and the B and W terminals are shorted together.
@@ -71,9 +78,9 @@ const int BOTH_POT_SHUTDOWN = 0x23;
 
 //resistance value byte (0 - 255)
 //The wiper is reset to the mid-scale position upon power-up, i.e. POT0_Dn = POT1_Dn = 128
-int POT0_Dn = 256;
-int POT1_Dn = 256;
-int BOTH_POT_Dn = 256;
+int POT0_Dn = 256; //wartosc oprou dla pwm duzego peltiera
+int POT1_Dn = 256; //wartosc oprou dla pwm duzego peltiera
+int BOTH_POT_Dn = 256; //wartosc oprou dla pwm obu peltierow
 
 //prototypy funkcji:
 void back();
@@ -88,6 +95,7 @@ void setb();
 void setr();
 void seti();
 void rest(){};
+int temp_chceck();
 void DigitalPotTransfer(int cmd, int value);  
 
 TFT myScreen = TFT(CS, DC, RESET);
@@ -120,7 +128,9 @@ void setup()
   myScreen.text("C", 149, 40);
   myScreen.text("HALL I:", 0, 60);
   myScreen.text("A", 138, 60);
-  myScreen.text("FLOW:", 0, 80);
+  myScreen.text("TEMP P:", 0, 80);
+  myScreen.text(s, 138, 80);
+  myScreen.text("C", 149, 80);
   myScreen.text("ERRROR:", 0, 100);
   String elapsedVar = String(err);
   elapsedVar.toCharArray(printout,2);
