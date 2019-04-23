@@ -77,13 +77,13 @@ void loop()
       // change the resistance on the POT0 from min to max:
     for (int POT_Dn = 0; POT_Dn < 256; POT_Dn++) {
       DigitalPotWrite(POT0_SEL, POT_Dn);
-      delay(20);
+      delay(200);
     }
 
     // change the resistance on the POT0 from max to min:
     for (int POT_Dn = 0; POT_Dn < 256; POT_Dn++) {
       DigitalPotWrite(POT0_SEL , 255 - POT_Dn);
-      delay(20);
+      delay(200);
     }
 }
 
