@@ -1,12 +1,12 @@
 /*
-Created by:
-Sebastian Owarzany
-Technical Physics
-Faculty of Physics and Applied Computer Science
-AGH University of Science and Technology
-https://github.com/SebekO
+  Created by:
+  Sebastian Owarzany
+  Technical Physics
+  Faculty of Physics and Applied Computer Science
+  AGH University of Science and Technology
+  https://github.com/SebekO
 */
-#include <TFT.h> 
+#include <TFT.h>
 #include <SPI.h>
 
 //ustawienia:
@@ -21,13 +21,14 @@ const int CS_PIN = 3; //pin SPI pierwszego potencjometru cyfrowego
 
 int analogPin0 = A0; //czujnik temp B
 int analogPin2 = A2; //czujnik temp R
-int analogPin5 = A5; //czujnik halla
+int analogPin3 = A3; //czujnik halla
 int analogPin4 = A4; ///czujnik temp dP
 
 int red = 255, gre = 0, blu = 255; //kolor czcionki wybranego elementu
-int goPin = 7; //przycisk akceptacji
-int downPin = 6; //przycisk wyboru
-int backPin = 5; //przycisk powrotu
+int goPin = 6; //przycisk akceptacji
+int downPin = 5; //przycisk wyboru
+int backPin = 3; //przycisk powrotu
+int sysPin = 7; //przycisk załączania
 
 
 //deklaracja:
@@ -94,9 +95,9 @@ void dev();
 void setb();
 void setr();
 void seti();
-void rest(){};
+void rest() {};
 int temp_chceck();
-void DigitalPotTransfer(int cmd, int value);  
+void DigitalPotTransfer(int cmd, int value);
 
 TFT myScreen = TFT(CS, DC, RESET);
 
@@ -109,7 +110,7 @@ void setup()
   pinMode(CS_PIN, OUTPUT); //potencjomentr
   SPI.begin(); //inicjalizacja SPI:
   //deklaracja strzalek:
-  h[0] = 27; 
+  h[0] = 27;
   d[0] = 25;
   g[0] = 26;
   s[0] = 247; //stopnie
@@ -133,24 +134,24 @@ void setup()
   myScreen.text("C", 149, 80);
   myScreen.text("ERRROR:", 0, 100);
   String elapsedVar = String(err);
-  elapsedVar.toCharArray(printout,2);
+  elapsedVar.toCharArray(printout, 2);
   myScreen.text(printout, 85, 100);
   myScreen.text(g, 150, 110);
 }
 void loop()
 {
   homee(); //funkcja puliptu menu
-  if((digitalRead(goPin)))
-  go(); //funkcja przycisku akceptacji
-  if((digitalRead(downPin)))
-  down(); //funkcja przycisku wyboru
-  if((digitalRead(backPin)))
-  back(); //funkcja przycisku powrotu
+  if ((digitalRead(goPin)))
+    go(); //funkcja przycisku akceptacji
+  if ((digitalRead(downPin)))
+    down(); //funkcja przycisku wyboru
+  if ((digitalRead(backPin)))
+    back(); //funkcja przycisku powrotu
 }
 float map(float x, float in_min, float in_max, float out_min, float out_max) {
   x = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-  float value = (int)(x * 100 + .5); 
-  return (float)value / 100; 
+  float value = (int)(x * 100 + .5);
+  return (float)value / 100;
 }
 void DigitalPotWrite(int cmd, int val)
 {
