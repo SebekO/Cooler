@@ -90,7 +90,7 @@ void go();
 void homee();
 void menu();
 void settings();
-void start();
+int start();
 void dev();
 void setb();
 void setr();
@@ -107,6 +107,7 @@ void setup()
   pinMode(goPin, INPUT_PULLUP);
   pinMode(downPin, INPUT_PULLUP);
   pinMode(backPin, INPUT_PULLUP);
+  pinMode(sysPin, INPUT);
   pinMode(CS_PIN, OUTPUT); //potencjomentr
   SPI.begin(); //inicjalizacja SPI:
   //deklaracja strzalek:

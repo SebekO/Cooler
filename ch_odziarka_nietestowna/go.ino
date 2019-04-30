@@ -5,7 +5,10 @@ void go()
   else if(point == 1)
   {
     if(but == 0)
-      start();
+    {
+      if(start())
+        homee();
+    }
     else if(but == 1)
       settings();
     else if(but == 2)

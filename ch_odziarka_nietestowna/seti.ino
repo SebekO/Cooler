@@ -7,7 +7,7 @@ void seti()
   {
     myScreen.background(255, 255, 255); // clear the screen
     myScreen.text("SET I", 50, 1);
-    myScreen.text("NOW IS:", 40, 30);
+    myScreen.text("I WANT:", 40, 30);
     myScreen.setTextSize(3);
     myScreen.stroke(red, gre, blu);
     myScreen.text(printout3, 40, 60);

@@ -21,6 +21,7 @@ void homee()
     myScreen.text(printout3, 85, 60);
     myScreen.text("A", 138, 60);
     myScreen.text("TEMP P:", 0, 80);
+    myScreen.text(printout4, 85, 80);
     myScreen.text(s, 138, 80);
     myScreen.text("C", 149, 80);
     myScreen.text("ERRROR:", 0, 100);
@@ -29,6 +30,8 @@ void homee()
     myScreen.text(printout, 85, 100);
     myScreen.text(g, 150, 110);
   }
+  while(1)
+  {
   point = 0; //ustawnie wskażnika na pulpicie menu
 
   //odczyt z termopary B
@@ -150,9 +153,12 @@ void homee()
     sr += digit4_tmp;
   }
   digit4_tmp = sr/prob;
-
   
+  if((digitalRead(goPin)))
+    go();
+    
   i++;
   if(i > 1000)
    i = 0;
+  }
 }
