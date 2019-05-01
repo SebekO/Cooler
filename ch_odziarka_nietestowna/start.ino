@@ -5,15 +5,12 @@ int start()
   {
     myScreen.background(255, 255, 255);
     myScreen.text("START", 50, 1);
-    myScreen.text("INIT...", 0, 20);
+
+      myScreen.text("INIT...", 0, 20);
     delay(100);
   }
   point = 11;
-  if(err == 1)
-  {
-    myScreen.text("ERROR DEVICE!", 0, 20);
-    return 1;
-  }
+
   
   //zmiana granic
   w_temp[0] = 25; w_temp[1] = 25; w_temp[2] = 0; w_temp[3] = 25;
@@ -40,7 +37,6 @@ int start()
     DigitalPotWrite(POT0_SEL , 255 - POT0_Dn);
     delay(10);
   }
-  myScreen.text("123", 0, 40);
   
   //zmiana granic
   w_temp[0] = 30; w_temp[2] = 5; w_temp[3] = 5;
@@ -67,7 +63,7 @@ int start()
   {
     return 1;
   }
-  myScreen.text("1...2...3...4...", 0, 40);
+  myScreen.text("4...", 0, 60);
   
   // właczenie d peltiera na 75%
   
@@ -78,7 +74,7 @@ int start()
   {
     return 1;
   }
-  myScreen.text("1...2...3...4...5", 0, 40);
+  myScreen.text("4...5...", 0, 60);
 
   
     //przykład
@@ -90,7 +86,7 @@ int start()
       POT1_Dn = POT1_Dn + 5;
       DigitalPotWrite(POT1_SEL, 255 - POT1_Dn);
     }
-    delay(load);
+    //delay(load);
   }
   myScreen.text("INIT... DONE", 0, 20);
   delay(5000);

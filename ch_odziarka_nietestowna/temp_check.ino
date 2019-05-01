@@ -28,4 +28,5 @@ int temp_chceck()
     myScreen.background(255, 255, 255);
     return 1;
   }
+  return 0;
 }

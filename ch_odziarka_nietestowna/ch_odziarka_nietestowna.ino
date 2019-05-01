@@ -27,7 +27,7 @@ int analogPin4 = A4; ///czujnik temp dP
 int red = 255, gre = 0, blu = 255; //kolor czcionki wybranego elementu
 int goPin = 6; //przycisk akceptacji
 int downPin = 5; //przycisk wyboru
-int backPin = 3; //przycisk powrotu
+int backPin = 2; //przycisk powrotu
 int sysPin = 7; //przycisk załączania
 
 
@@ -43,7 +43,7 @@ float digit4 = 0; //termopara duzy peltier
 float var_set = 0; //zmienna dla ustawien
 
 int err = 0; //stan urządzenia
-int err_tmp = 1; //pomocniczna zmienna
+int err_tmp = 2; //pomocniczna zmienna
 char printout[2]; //tablica do przechowywania stanu urzadzenia
 
 char printout1[5]; //tablica do przechowywania odczytu
@@ -137,9 +137,6 @@ void setup()
   myScreen.text(s, 138, 80);
   myScreen.text("C", 149, 80);
   myScreen.text("ERRROR:", 0, 100);
-  String elapsedVar = String(err);
-  elapsedVar.toCharArray(printout, 2);
-  myScreen.text(printout, 85, 100);
   myScreen.text(g, 150, 110);
 }
 void loop()
