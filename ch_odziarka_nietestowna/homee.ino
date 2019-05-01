@@ -22,7 +22,9 @@ void homee()
     myScreen.text(s, 138, 80);
     myScreen.text("C", 149, 80);
     myScreen.text("ERRROR:", 0, 100);
-
+    String elapsedVar = String(err);
+    elapsedVar.toCharArray(printout,2);
+    myScreen.text(printout, 85, 100);
     myScreen.text(g, 150, 110);
   }
   point = 0; //ustawnie wskażnika na pulpicie menu

@@ -9,23 +9,31 @@ int start()
     delay(100);
   }
   point = 11;
+  if(err == 1)
+  {
+    myScreen.text("ERROR DEVICE!", 0, 20);
+    return 1;
+  }
   
-  //sprawdzanie temp
+  //zmiana granic
   w_temp[0] = 25; w_temp[1] = 25; w_temp[2] = 0; w_temp[3] = 25;
-  
+  //sprawdzanie temp
   if(temp_chceck())
   {
     return 1;
   }
-  myScreen.text("1", 0, 40);
+  myScreen.text("1...", 0, 40);
   //włączenie pompy
   
-  //sprawdzanie temp
+  //zmiana granic
   w_temp[0] = 20; w_temp[2] = 5; w_temp[3] = 25;
+  //sprawdzanie temp
+  if(temp_chceck())
+  {
+    return 1;
+  }
+  myScreen.text("1...2...", 0, 40);
   
-  temp_chceck();
-  
-  myScreen.text("12", 0, 40);
   //właczenie d peltiera na 25%
   for (POT0_Dn = 0; POT0_Dn < 63; POT0_Dn++)
   {
@@ -33,35 +41,44 @@ int start()
     delay(10);
   }
   myScreen.text("123", 0, 40);
-  //sprawdzanie temp i pradu
+  
+  //zmiana granic
   w_temp[0] = 30; w_temp[2] = 5; w_temp[3] = 5;
-  
-  temp_chceck();
-  
-  myScreen.text("1234", 0, 40);
+  //sprawdzanie temp
+  if(temp_chceck())
+  {
+    return 1;
+  }
+  myScreen.text("1...2...3...", 0, 40);
+
   //właczenie m peltiera na 15%
   for (POT1_Dn = 0; POT1_Dn < 38; POT1_Dn++)
   {
     DigitalPotWrite(POT1_SEL , 255 - POT1_Dn);
     delay(10);
   }
-  myScreen.text("12345", 0, 40);
+
   //właczenie wentylatora
   
-  //sprawdzanie temp
+  //zmiana granic
   w_temp[0] = 30; w_temp[2] = 5; w_temp[3] = 5;
+  //sprawdzanie temp
+  if(temp_chceck())
+  {
+    return 1;
+  }
+  myScreen.text("1...2...3...4...", 0, 40);
   
-  temp_chceck();
-  
-  myScreen.text("123456", 0, 40);
   // właczenie d peltiera na 75%
   
   //sprawdzanie temp
   w_temp[0] = 30; w_temp[2] = 5; w_temp[3] = 5;
   
-  temp_chceck();
-  
-  myScreen.text("1234567", 0, 40); 
+  if(temp_chceck())
+  {
+    return 1;
+  }
+  myScreen.text("1...2...3...4...5", 0, 40);
 
   
     //przykład
@@ -75,6 +92,9 @@ int start()
     }
     delay(load);
   }
+  myScreen.text("INIT... DONE", 0, 20);
+  delay(5000);
+  return 1;
 }
 
 

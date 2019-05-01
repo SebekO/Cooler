@@ -43,6 +43,7 @@ float digit4 = 0; //termopara duzy peltier
 float var_set = 0; //zmienna dla ustawien
 
 int err = 0; //stan urządzenia
+int err_tmp = 1; //pomocniczna zmienna
 char printout[2]; //tablica do przechowywania stanu urzadzenia
 
 char printout1[5]; //tablica do przechowywania odczytu

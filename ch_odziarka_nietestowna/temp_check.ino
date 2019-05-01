@@ -21,7 +21,7 @@ int temp_chceck()
     myScreen.background(255, 255, 255);
     return 1;
   }
-  else if (digit4_tmp > w_temp[3])
+  else if (digit4_tmp >= w_temp[3])
   {
     myScreen.text("ERROR TEMP dP", 0, 40);
     delay(5000);

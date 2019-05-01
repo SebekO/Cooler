@@ -3,7 +3,6 @@ void get_values()
   float sr = 0;
   int prob = 50;
   int i; //iterator dla tablicy
-  int err_tmp;
   //odczyt z termopary B
   sr = 0;
   for(int i = 0; i < prob; i++)
@@ -135,7 +134,6 @@ void get_values()
     myScreen.text(printout, 85, 100);
   }
   err_tmp = err;
-  
   i++;
   if(i > 1000)
    i = 0;
