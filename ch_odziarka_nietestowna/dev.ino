@@ -14,7 +14,7 @@ void dev()
   point = 13;
   while(!(digitalRead(backPin)))
   {
-    dev_check();
+    dev_check(0);
     if((digitalRead(backPin)))
     back();
   }

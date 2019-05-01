@@ -3,7 +3,7 @@ void get_values()
   float sr = 0;
   int prob = 50;
   int i; //iterator dla tablicy
-
+  int err_tmp;
   //odczyt z termopary B
   sr = 0;
   for(int i = 0; i < prob; i++)
@@ -124,10 +124,22 @@ void get_values()
   }
   digit4_tmp = sr/prob;
   
-  if((digitalRead(goPin)))
-    go();
-    
+  dev_check(1);
+  if(err_tmp != err and point == 0)
+  {
+    myScreen.stroke(255, 255, 255);
+    myScreen.text(printout, 85, 100);
+    String elapsedVar = String(err);
+    elapsedVar.toCharArray(printout,2);
+    myScreen.stroke(0, 0 ,0);
+    myScreen.text(printout, 85, 100);
+  }
+  err_tmp = err;
+  
   i++;
   if(i > 1000)
    i = 0;
+   
+  if((digitalRead(goPin)))
+    go();  
 }

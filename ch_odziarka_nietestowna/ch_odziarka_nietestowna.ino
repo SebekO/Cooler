@@ -97,7 +97,7 @@ void setr();
 void seti();
 void rest() {};
 int temp_chceck();
-void dev_check();
+void dev_check(bool);
 void get_values();
 void DigitalPotTransfer(int cmd, int value);
 
