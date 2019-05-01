@@ -97,6 +97,8 @@ void setr();
 void seti();
 void rest() {};
 int temp_chceck();
+void dev_check();
+void get_values();
 void DigitalPotTransfer(int cmd, int value);
 
 TFT myScreen = TFT(CS, DC, RESET);
