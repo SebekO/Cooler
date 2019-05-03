@@ -5,76 +5,78 @@ int start()
   {
     myScreen.background(255, 255, 255);
     myScreen.text("START", 50, 1);
-
+    /*if(err)
+    {
+      myScreen.text("DEVICE ERRROR", 0, 20);
+      delay(5000);
+      return 1;
+    }
+    else*/
       myScreen.text("INIT...", 0, 20);
     delay(100);
   }
   point = 11;
 
-  
-  //zmiana granic
-  w_temp[0] = 25; w_temp[1] = 25; w_temp[2] = 0; w_temp[3] = 25;
-  //sprawdzanie temp
-  if(temp_chceck())
+  w_temp[0] = 25; w_temp[1] = 25; w_temp[2] = 0; w_temp[3] = 25; //zmiana granic
+  if(temp_chceck()) //sprawdzanie temp
   {
     return 1;
   }
-  myScreen.text("1...", 0, 40);
+  myScreen.text("[||         ]", 0, 40);
+  
   //włączenie pompy
   
-  //zmiana granic
-  w_temp[0] = 20; w_temp[2] = 5; w_temp[3] = 25;
-  //sprawdzanie temp
-  if(temp_chceck())
+  w_temp[0] = 20; w_temp[2] = 5; w_temp[3] = 25; //zmiana granic
+  if(temp_chceck()) //sprawdzanie temp
   {
     return 1;
   }
-  myScreen.text("1...2...", 0, 40);
+  myScreen.text("[||||       ]", 0, 40);
   
-  //właczenie d peltiera na 25%
-  for (POT0_Dn = 0; POT0_Dn < 63; POT0_Dn++)
+  for (POT0_Dn = 0; POT0_Dn < 63; POT0_Dn++) //właczenie d peltiera na 25%
   {
+    myScreen.text("B.PEL -> 25%", 0, 60); //wyświetl aktualny proces
     DigitalPotWrite(POT0_SEL , 255 - POT0_Dn);
-    delay(10);
+    delay(load);
   }
+  myScreen.stroke(255, 255, 255);
+  myScreen.text("B.PEL -> 25% P", 0, 60);
+  myScreen.stroke(0, 0, 0);
   
-  //zmiana granic
-  w_temp[0] = 30; w_temp[2] = 5; w_temp[3] = 5;
-  //sprawdzanie temp
-  if(temp_chceck())
+  w_temp[0] = 30; w_temp[2] = 5; w_temp[3] = 5; //zmiana granic
+  
+  if(temp_chceck()) //sprawdzanie temp
   {
     return 1;
   }
-  myScreen.text("1...2...3...", 0, 40);
+  myScreen.text("[||||||     ]", 0, 40); //wyświetl postęp
 
-  //właczenie m peltiera na 15%
-  for (POT1_Dn = 0; POT1_Dn < 38; POT1_Dn++)
+  for (POT1_Dn = 0; POT1_Dn < 38; POT1_Dn++) //właczenie m peltiera na 15%
   {
+    myScreen.text("S.PEL -> 15%", 0, 60); //wyświetl aktualny proces
     DigitalPotWrite(POT1_SEL , 255 - POT1_Dn);
-    delay(10);
+    delay(load);
   }
-
+  myScreen.stroke(255, 255, 255);
+  myScreen.text("S.PEL -> 15%", 0, 60);
+  myScreen.stroke(0, 0, 0);
   //właczenie wentylatora
   
-  //zmiana granic
-  w_temp[0] = 30; w_temp[2] = 5; w_temp[3] = 5;
-  //sprawdzanie temp
-  if(temp_chceck())
+  w_temp[0] = 30; w_temp[2] = 5; w_temp[3] = 5; //zmiana granic
+  if(temp_chceck()) //sprawdzanie temp
   {
     return 1;
   }
-  myScreen.text("4...", 0, 60);
+  myScreen.text("[|||||||||  ]", 0, 40); //wyświetl postęp
   
   // właczenie d peltiera na 75%
   
-  //sprawdzanie temp
-  w_temp[0] = 30; w_temp[2] = 5; w_temp[3] = 5;
-  
-  if(temp_chceck())
+  w_temp[0] = 30; w_temp[2] = 5; w_temp[3] = 5; //zmiana granic
+  if(temp_chceck()) //sprawdzanie temp
   {
     return 1;
   }
-  myScreen.text("4...5...", 0, 60);
+  myScreen.text("[|||||||||||]", 0, 40); //wyświetl postęp
 
   
     //przykład
@@ -88,7 +90,7 @@ int start()
     }
     //delay(load);
   }
-  myScreen.text("INIT... DONE", 0, 20);
+  myScreen.text("INIT... DONE", 0, 20); //wyświetl postęp
   delay(5000);
   return 1;
 }

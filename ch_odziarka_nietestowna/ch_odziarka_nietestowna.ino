@@ -15,7 +15,7 @@
 #define RESET  8 //pin wyswietlacza
 #define txtsize 2 //rozmiar wyswietlanego tekstu
 #define N 100 //ilosc punktów do wykresu
-#define load 500 //cas pomiedzy zmianami potencjometru
+#define load 50 //cas pomiedzy zmianami potencjometru przy załączaniu peltierow
 
 const int CS_PIN = 3; //pin SPI pierwszego potencjometru cyfrowego
 
