@@ -39,9 +39,7 @@ int start()
     DigitalPotWrite(POT0_SEL , 255 - POT0_Dn);
     delay(load);
   }
-  myScreen.stroke(255, 255, 255);
-  myScreen.text("B.PEL -> 25% P", 0, 60);
-  myScreen.stroke(0, 0, 0);
+  
   
   w_temp[0] = 30; w_temp[2] = 5; w_temp[3] = 5; //zmiana granic
   
@@ -53,13 +51,11 @@ int start()
 
   for (POT1_Dn = 0; POT1_Dn < 38; POT1_Dn++) //właczenie m peltiera na 15%
   {
-    myScreen.text("S.PEL -> 15%", 0, 60); //wyświetl aktualny proces
+    myScreen.text("S.PEL -> 15%", 0, 80); //wyświetl aktualny proces
     DigitalPotWrite(POT1_SEL , 255 - POT1_Dn);
     delay(load);
   }
-  myScreen.stroke(255, 255, 255);
-  myScreen.text("S.PEL -> 15%", 0, 60);
-  myScreen.stroke(0, 0, 0);
+  
   //właczenie wentylatora
   
   w_temp[0] = 30; w_temp[2] = 5; w_temp[3] = 5; //zmiana granic
@@ -77,34 +73,11 @@ int start()
     return 1;
   }
   myScreen.text("[|||||||||||]", 0, 40); //wyświetl postęp
-
-  
-    //przykład
-  for(POT0_Dn; POT0_Dn < 256; POT0_Dn++)
-  {
-    DigitalPotWrite(POT0_SEL, 255 - POT0_Dn);
-    if(POT0_Dn%10 == 0)
-    {
-      POT1_Dn = POT1_Dn + 5;
-      DigitalPotWrite(POT1_SEL, 255 - POT1_Dn);
-    }
-    //delay(load);
-  }
+  myScreen.stroke(255, 255, 255);
+  myScreen.text("B.PEL -> 25% P", 0, 60);
+  myScreen.text("S.PEL -> 15% P", 0, 80);
+  myScreen.stroke(0, 0, 0);
   myScreen.text("INIT... DONE", 0, 20); //wyświetl postęp
   delay(5000);
   return 1;
-}
-
-
-
-
-void mDelay( int ms) {
-  mDelay(1);
-  while( ms-- ) {
-    delay(1);
-    
-    mstick++;
-    if( mstick > 79 ) mstick=0;
-    Serial.println(mstick);
-  }
 }
