@@ -5,13 +5,16 @@ void back()
   return;
   if(point == 1)
   {
-    homee();
+    home_tft();
   }
   if(point == 11 or point == 12 or point == 13 or point == 14)
   {
-   menu();
+   menu_tft();
   }
-  
+  if(point == 141)
+  {
+   plot_tft();
+  }
   if(point == 121 or point == 122 or point == 123)
   {
     but1++;

@@ -2,7 +2,6 @@ void get_values()
 {
   float sr = 0;
   int prob = 50;
-  int i; //iterator dla tablicy
   //odczyt z termopary B
   sr = 0;
   for(int i = 0; i < prob; i++)
@@ -21,7 +20,7 @@ void get_values()
     elapsedVar1.toCharArray(printout1,5);
     myScreen.stroke(0, 0 ,0);
     myScreen.text(printout1, 85, 20);
-    t_digit1[i] = digit1; //tablica na dane do wykresu  
+    t_digit1[mstick] = short(digit1); //tablica na dane do wykresu  
   }
   sr = 0;
   for(int i = 0; i < prob; i++)
@@ -51,7 +50,7 @@ void get_values()
     elapsedVar2.toCharArray(printout2,5);
     myScreen.stroke(0, 0 ,0);
     myScreen.text(printout2, 85, 40);  
-    t_digit2[i] = digit2;
+    t_digit2[mstick] = short(digit2);
   }
   sr = 0;
   for(int i = 0; i < prob; i++)
@@ -81,7 +80,7 @@ void get_values()
     elapsedVar3.toCharArray(printout3,5);
     myScreen.stroke(0, 0 ,0);
     myScreen.text(printout3, 85, 60); 
-    t_digit3[i] = digit3;
+    t_digit3[mstick] = short(digit3);
   }
   sr = 0;
   for(int i = 0; i < prob; i++)
@@ -111,7 +110,7 @@ void get_values()
     elapsedVar1.toCharArray(printout4,5);
     myScreen.stroke(0, 0 ,0);
     myScreen.text(printout4, 85, 80);
-    t_digit4[i] = digit4; //tablica na dane do wykresu  
+    t_digit4[mstick] = short(digit4); //tablica na dane do wykresu  
   }
   sr = 0;
   for(int i = 0; i < prob; i++)
@@ -134,10 +133,7 @@ void get_values()
     myScreen.text(printout, 85, 100);
   }
   err_tmp = err;
-  i++;
-  if(i > 1000)
-   i = 0;
-   
-  if((digitalRead(goPin)))
-    go();  
+  mstick++;
+  if(mstick >= N)
+   mstick = 0;
 }

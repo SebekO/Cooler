@@ -1,11 +1,14 @@
-`/*
-  Created by:
+/*
+
+  Created 09.05.2019 by:
   Sebastian Owarzany
   Technical Physics
   Faculty of Physics and Applied Computer Science
   AGH University of Science and Technology
   https://github.com/SebekO
+  
 */
+
 #include <TFT.h>
 #include <SPI.h>
 
@@ -14,23 +17,22 @@
 #define DC   9 //pin wyswietlacza
 #define RESET  8 //pin wyswietlacza
 #define txtsize 2 //rozmiar wyswietlanego tekstu
-#define N 100 //ilosc punktów do wykresu
-#define load 50 //cas pomiedzy zmianami potencjometru przy załączaniu peltierow
+#define N 80 //ilosc punktów do wykresu
+#define load 50 //czas pomiedzy zmianami potencjometru przy załączaniu peltierow
 
-const int CS_PIN = 3; //pin SPI pierwszego potencjometru cyfrowego
-const int CS_PIN = 3; //pin sterowania przekaźnikiem dla pompy
-const int CS_PIN = 3; //pin sterowania przekaźnikiem dla wentylatora
+const int CS_PIN = 3; //pin SPI potencjometru cyfrowego
+const int PUMP_PIN = 0; //pin sterowania przekaźnikiem dla pompy
+const int FAN_PIN = 1; //pin sterowania przekaźnikiem dla wentylatora
 
-int analogPin0 = A0; //czujnik temp B
-int analogPin2 = A2; //czujnik temp R
-int analogPin3 = A3; //czujnik halla
-int analogPin4 = A4; ///czujnik temp dP
+const int analogPin0 = A0; //czujnik temp B
+const int analogPin2 = A1; //czujnik temp R
+const int analogPin3 = A2; //czujnik halla
+const int analogPin4 = A3; ///czujnik temp dP
 
-int red = 255, gre = 0, blu = 255; //kolor czcionki wybranego elementu
-int goPin = 6; //przycisk akceptacji
-int downPin = 5; //przycisk wyboru
-int backPin = 2; //przycisk powrotu
-int sysPin = 7; //przycisk załączania
+const int red = 255, gre = 0, blu = 255; //kolor czcionki wybranego elementu
+const int goPin = 6; //przycisk akceptacji
+const int downPin = 5; //przycisk wyboru
+const int backPin = 2; //przycisk powrotu
 
 
 //deklaracja:
@@ -61,12 +63,12 @@ char s[] = "  "; //znak specjalny dla stopnie
 int point = 0; //aktualne menu programu
 int but = 0; //aktualny stan przycisku wyboru
 int but1 = 0; //aktualny stan przycisku akceptacji/powrotu
-int mstick; //dla licznika
+int mstick = 0; //dla iteratora
 
-float t_digit1[N]; //tablica na dane do wykresu wartowsci digital
-float t_digit2[N]; //tablica na dane do wykresu wartowsci digita2
-float t_digit3[N]; //tablica na dane do wykresu wartowsci digita3
-float t_digit4[N]; //tablica na dane do wykresu wartowsci digita4
+int t_digit1[N] = {0}; //tablica na dane do wykresu wartowsci digital
+int t_digit2[N] = {0}; //tablica na dane do wykresu wartowsci digita2
+int t_digit3[N] = {0}; //tablica na dane do wykresu wartowsci digita3
+int t_digit4[N] = {0}; //tablica na dane do wykresu wartowsci digita4
 
 //potentiometer select byte
 const int POT0_SEL = 0x11; //adres duzego peltiera
@@ -90,21 +92,23 @@ int BOTH_POT_Dn = 256; //wartosc oprou dla pwm obu peltierow
 void back();
 void down();
 void go();
-void homee();
-void menu();
-void settings();
-int start();
+void home_tft();
+void menu_tft();
+void settings_tft();
 void dev();
 void setb();
 void setr();
 void seti();
 void rest() {};
-int temp_chceck();
 void dev_check(bool);
 void get_values();
+void get_plot();
 void DigitalPotTransfer(int cmd, int value);
 
-TFT myScreen = TFT(CS, DC, RESET);
+int temp_chceck();
+int start();
+
+TFT myScreen = TFT(CS, DC, RESET); //zmienna dla ekranu
 
 void setup()
 {
@@ -112,7 +116,6 @@ void setup()
   pinMode(goPin, INPUT_PULLUP);
   pinMode(downPin, INPUT_PULLUP);
   pinMode(backPin, INPUT_PULLUP);
-  pinMode(sysPin, INPUT);
   pinMode(CS_PIN, OUTPUT); //potencjomentr
   SPI.begin(); //inicjalizacja SPI:
   //deklaracja strzalek:
@@ -143,7 +146,7 @@ void setup()
 }
 void loop()
 {
-  homee(); //funkcja puliptu menu
+  home_tft(); //funkcja puliptu menu
   if ((digitalRead(goPin)))
     go(); //funkcja przycisku akceptacji
 }
@@ -151,6 +154,10 @@ float map(float x, float in_min, float in_max, float out_min, float out_max) {
   x = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
   float value = (int)(x * 100 + .5);
   return (float)value / 100;
+}
+
+int map1(int x, int in_min, int in_max, int out_min, int out_max) {
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 void DigitalPotWrite(int cmd, int val)
 {
