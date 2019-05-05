@@ -17,7 +17,7 @@ void settings()
   }
   point = 12;
   delay(100);
-  while(!(digitalRead(backPin)))
+  while(!(digitalRead(backPin)) or !(digitalRead(goPin)))
   {
     if((digitalRead(goPin)))
     go();

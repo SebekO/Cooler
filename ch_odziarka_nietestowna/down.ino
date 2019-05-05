@@ -2,11 +2,11 @@ void down()
 {
   if(point == 0)
     return;
-  else if(point == 121 or point == 122 or point == 123)
+  if(point == 121 or point == 122 or point == 123)
   {
    settings();
   }
-  else if(point == 1)
+  if(point == 1)
   {
     if(but == 0)
     {
@@ -17,7 +17,7 @@ void down()
       delay(500);
       but++;
     }
-    else if(but == 1)
+    if(but == 1)
     {
       myScreen.text("1.START", 0, 20);
       myScreen.text("2.SETTINGS", 0, 40);
@@ -27,7 +27,7 @@ void down()
       delay(500);
       but++;
     }
-    else if(but == 2)
+    if(but == 2)
     {
       myScreen.text("1.START", 0, 20);
       myScreen.text("2.SETTINGS", 0, 40);
@@ -38,7 +38,7 @@ void down()
       delay(500);
       but++;
     }
-    else if(but == 3)
+    if(but == 3)
     {
       myScreen.text("2.SETTINGS", 0, 40);
       myScreen.text("3.DEVICE", 0, 60);
@@ -50,7 +50,7 @@ void down()
       but = 0;
     }
   }
-  else if(point == 12)
+  if(point == 12)
   {
     if(but == 0)
     {
@@ -61,7 +61,7 @@ void down()
       delay(500);
       but++;
     }
-    else if(but == 1)
+    if(but == 1)
     {
       myScreen.text("1.SET TEMP B", 0, 20);
       myScreen.text("2.SET TEMP R", 0, 40);
@@ -71,7 +71,7 @@ void down()
       delay(500);
       but++;
     }
-    else if(but == 2)
+    if(but == 2)
     {
       myScreen.text("1.SET TEMP B", 0, 20);
       myScreen.text("2.SET TEMP R", 0, 40);
@@ -82,7 +82,7 @@ void down()
       delay(500);
       but++;
     }
-    else if(but == 3)
+    if(but == 3)
     {
       myScreen.text("2.SET TEMP R", 0, 40);
       myScreen.text("4.RE-DEFAULT", 0, 80);

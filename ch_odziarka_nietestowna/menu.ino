@@ -17,7 +17,7 @@ void menu()
     delay(100);
   }
   point = 1;
-  while(!(digitalRead(backPin)))
+  while(!(digitalRead(backPin)) or !(digitalRead(goPin)))
   {
     if((digitalRead(goPin)))
     go();

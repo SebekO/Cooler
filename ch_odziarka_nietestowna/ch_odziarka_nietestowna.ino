@@ -1,4 +1,4 @@
-/*
+`/*
   Created by:
   Sebastian Owarzany
   Technical Physics
@@ -18,6 +18,8 @@
 #define load 50 //cas pomiedzy zmianami potencjometru przy załączaniu peltierow
 
 const int CS_PIN = 3; //pin SPI pierwszego potencjometru cyfrowego
+const int CS_PIN = 3; //pin sterowania przekaźnikiem dla pompy
+const int CS_PIN = 3; //pin sterowania przekaźnikiem dla wentylatora
 
 int analogPin0 = A0; //czujnik temp B
 int analogPin2 = A2; //czujnik temp R

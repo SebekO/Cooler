@@ -23,7 +23,7 @@ void dev_check(bool tryb)
   }
   else
   {
-    if(digit1 > -18 or digit1 < 99)
+    if(digit1 > -18 and digit1 < 99)
     {
       myScreen.text("OK", 120, 20);
     }
@@ -35,7 +35,7 @@ void dev_check(bool tryb)
       myScreen.text("NOK", 120, 20);
       err = 1;  
     }
-    if(digit2 > -18 or digit2 < 99)
+    if(digit2 > -18 and digit2 < 99)
     {
       myScreen.text("OK", 120, 40);
     }
@@ -47,7 +47,7 @@ void dev_check(bool tryb)
       myScreen.text("NOK", 120, 40);
       err = 1;
     }
-    if(digit3 > 0 or digit3 < 20)
+    if(digit3 > 0 and digit3 < 20)
     {
       myScreen.text("OK", 83, 60);
     }
@@ -59,7 +59,7 @@ void dev_check(bool tryb)
       myScreen.text("NOK", 83, 60);
       err = 1;
     }
-    if(digit4 > -18 or digit4 < 99)
+    if(digit4 > -18 and digit4 < 99)
     {
       myScreen.text("OK", 120, 80);
     }
