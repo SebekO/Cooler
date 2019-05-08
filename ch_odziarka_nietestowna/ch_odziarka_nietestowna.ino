@@ -18,7 +18,7 @@
 #define RESET  8 //pin wyswietlacza
 #define txtsize 2 //rozmiar wyswietlanego tekstu
 #define N 80 //ilosc punktów do wykresu
-#define load 50 //czas pomiedzy zmianami potencjometru przy załączaniu peltierow
+#define load 100 //czas pomiedzy zmianami potencjometru przy załączaniu peltierow
 
 const int CS_PIN = 3; //pin SPI potencjometru cyfrowego
 const int PUMP_PIN = 0; //pin sterowania przekaźnikiem dla pompy
@@ -117,6 +117,8 @@ void setup()
   pinMode(downPin, INPUT_PULLUP);
   pinMode(backPin, INPUT_PULLUP);
   pinMode(CS_PIN, OUTPUT); //potencjomentr
+  pinMode(PUMP_PIN, OUTPUT); //potencjomentr
+  pinMode(FAN_PIN, OUTPUT); //potencjomentr
   SPI.begin(); //inicjalizacja SPI:
   //deklaracja strzalek:
   h[0] = 27;

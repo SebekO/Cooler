@@ -1,14 +1,14 @@
 void get_values()
 {
   float sr = 0;
-  int prob = 50;
+  int prob = 500;
   //odczyt z termopary B
   sr = 0;
   for(int i = 0; i < prob; i++)
   {
     digit1 = analogRead(analogPin0);
     digit1 = digit1 * (5.0 / 1023.0);
-    digit1 = map(digit1, 0, 5, -20, 100);
+    digit1 = map(digit1, 0, 5, 0, 98.5);
     sr += digit1;
   }
   digit1 = sr/prob;
@@ -27,7 +27,7 @@ void get_values()
   {
     digit1_tmp = analogRead(analogPin0);
     digit1_tmp = digit1_tmp * (5.0 / 1023.0);
-    digit1_tmp = map(digit1_tmp, 0, 5, -20, 100);
+    digit1_tmp = map(digit1_tmp, 0, 5, 0, 98.5);
     sr += digit1_tmp;
   }
   digit1_tmp = sr/prob;
@@ -38,7 +38,7 @@ void get_values()
   {
     digit2 = analogRead(analogPin2);
     digit2 = digit2 * (5.0 / 1023.0);
-    digit2 = map(digit2, 0, 5, -20, 100);
+    digit2 = map(digit2, 0, 5, 0, 98.5);
     sr += digit2;
   }
   digit2 = sr/prob;
@@ -57,7 +57,7 @@ void get_values()
   {
     digit2_tmp = analogRead(analogPin2);
     digit2_tmp = digit2_tmp * (5.0 / 1023.0);
-    digit2_tmp = map(digit2_tmp, 0, 5, -20, 100);
+    digit2_tmp = map(digit2_tmp, 0, 5, 0, 98.5);
     sr += digit2_tmp;
   }
   digit2_tmp = sr/prob;
@@ -68,10 +68,11 @@ void get_values()
   {
     digit3 = analogRead(analogPin3);
     digit3 = digit3 * (5.0 / 1023.0);
-    digit3 = map(digit3, 1.7, 2.58, 20, 0);
+    digit3 = map(digit3, 2.64, 3.45, 0, 20);
     sr += digit3;
   }
   digit3 = sr/prob;
+  digit3 = digit3 - digit3*0.09;
   if(digit3_tmp != digit3 and point == 0)
   {
     myScreen.stroke(255, 255, 255);
@@ -87,7 +88,7 @@ void get_values()
   {
     digit3_tmp = analogRead(analogPin3);
     digit3_tmp = digit3_tmp * (5.0 / 1023.0);
-    digit3_tmp = map(digit3_tmp, 1.7, 2.58, 20, 0);
+    digit3_tmp = map(digit3_tmp, 2.64, 3.45, 0, 20);
     sr += digit3_tmp;
   }
   digit3_tmp = sr/prob;
@@ -98,7 +99,7 @@ void get_values()
   {
     digit4 = analogRead(analogPin4);
     digit4 = digit4 * (5.0 / 1023.0);
-    digit4 = map(digit4, 0, 5, -20, 100);
+    digit4 = map(digit4, 0, 5, -100, 94.7);
     sr += digit4;
   }
   digit4 = sr/prob;
@@ -117,7 +118,7 @@ void get_values()
   {
     digit4_tmp = analogRead(analogPin4);
     digit4_tmp = digit4_tmp * (5.0 / 1023.0);
-    digit4_tmp = map(digit4_tmp, 0, 5, -20, 100);
+    digit4_tmp = map(digit4_tmp, 0, 5, -100, 94.7);
     sr += digit4_tmp;
   }
   digit4_tmp = sr/prob;
