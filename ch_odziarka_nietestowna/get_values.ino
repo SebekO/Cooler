@@ -1,7 +1,7 @@
 void get_values()
 {
   float sr = 0;
-  int prob = 500;
+  int prob = 50;
   //odczyt z termopary B
   sr = 0;
   for(int i = 0; i < prob; i++)
