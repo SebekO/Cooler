@@ -27,7 +27,7 @@ const int FAN_PIN = 1; //pin sterowania przekaźnikiem dla wentylatora
 const int analogPin0 = A0; //czujnik temp B
 const int analogPin2 = A1; //czujnik temp R
 const int analogPin3 = A2; //czujnik halla
-const int analogPin4 = A3; ///czujnik temp dP
+const int analogPin4 = A3; ///czujnik temp próbka
 
 const int red = 255, gre = 0, blu = 255; //kolor czcionki wybranego elementu
 const int goPin = 6; //przycisk akceptacji
@@ -43,7 +43,7 @@ float digit2 = 0; //termopara radiator
 float digit3_tmp = 0; //pomocniczna zmienna
 float digit3 = 0; //czujnik halla
 float digit4_tmp = 0; //pomocniczna zmienna
-float digit4 = 0; //termopara duzy peltier
+float digit4 = 0; //termopara próbka
 float var_set = 0; //zmienna dla ustawien
 
 int err = 0; //stan urządzenia
