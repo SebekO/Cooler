@@ -132,10 +132,10 @@ void loop()
   homee(); //funkcja puliptu menu
   if((digitalRead(goPin)))
   go(); //funkcja przycisku akceptacji
-  if((digitalRead(downPin)))
-  down(); //funkcja przycisku wyboru
-  if((digitalRead(backPin)))
-  back(); //funkcja przycisku powrotu
+  //if((digitalRead(downPin)))
+  //down(); //funkcja przycisku wyboru
+  //if((digitalRead(backPin)))
+ // back(); //funkcja przycisku powrotu
 }
 float map(float x, float in_min, float in_max, float out_min, float out_max) {
   x = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
