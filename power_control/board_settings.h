@@ -4,8 +4,8 @@ void check_dev();
 void temp();
 void check_own();
 
-const int oneWireBus = 12; //D6
-const int oneWireBus1 = 14; //D5
+const int oneWireBus = 12; //D6 -> A1
+const int oneWireBus1 = 14; //D5 -> A0
 
 int relay[n] = { 16, 5, 4, 0}; // D0, D1, D2, D3, 
 int status_dev_pin = 15; //D8
